@@ -23,7 +23,6 @@ public class ContextConfig {
                                  @Value("${jdbc.password}") String password){
         url = url +"?encoding=UTF8&sql_dialect=3";
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        //?encoding=UTF8&sql_dialect=3
         dataSource.setDriverClassName(driver);
         dataSource.setUrl(url);
         dataSource.setUsername(user);
@@ -40,10 +39,10 @@ public class ContextConfig {
 
     @Bean
     public EJournalDAO eJournalDAO(DataSource dataSource){
-        //JdbcEJurnalDAO jurnalDAO = new JdbcEJurnalDAO();
-        //jurnalDAO.setDataSource(dataSource);
-        //return jurnalDAO;
-        return new DummyEJurnalDAO();
+        JdbcEJurnalDAO jurnalDAO = new JdbcEJurnalDAO();
+        jurnalDAO.setDataSource(dataSource);
+        return jurnalDAO;
+        //return new DummyEJurnalDAO();
     }
 
     @Bean

@@ -35,10 +35,10 @@ public class JdbcEJurnalDAO implements EJournalDAO {
 
     @Override
     public Collection<Rating> getJournal() {
-        if (lsJournals.size()==0)
+        //if (lsJournals.size()==0)
             try {
                 String sql = "select R.PKR, R.PKSB, R.PKST, s.nmsubject, R.R1, R.R2, R.R3, R.R4, R.R5, R.R6, R.R7, " +
-                             "R.R8, R.R9, R.R9, R.R10, R.R11, R.R12 from RATING R inner join subject s on r.pksb=s.pksb";
+                             "R.R8, R.R9, R.R9, R.R10, R.R11, R.R12, R.R13, R.R14, R.R15 from RATING R inner join subject s on r.pksb=s.pksb";
                 List<Rating> lr = db.query(sql, new Object[]{}, new RowMapper<Rating>() {
                     @Override
                     public Rating mapRow(ResultSet rs, int i) throws SQLException {
@@ -59,6 +59,9 @@ public class JdbcEJurnalDAO implements EJournalDAO {
                         rating.setR10(rs.getInt("R10"));
                         rating.setR11(rs.getInt("R11"));
                         rating.setR12(rs.getInt("R12"));
+                        rating.setR13(rs.getInt("R13"));
+                        rating.setR14(rs.getInt("R14"));
+                        rating.setR15(rs.getInt("R15"));
 
                         return rating;
                     }
@@ -81,10 +84,10 @@ public class JdbcEJurnalDAO implements EJournalDAO {
 
     @Override
     public Collection<Rating> getRatings() {
-        if (lsRatings.size() == 0)
+        //if (lsRatings.size() == 0)
             try {
                 String sql = "select R.PKR, R.PKSB, R.PKST, s.lastname, s.name, R.R1, R.R2, R.R3, R.R4, R.R5, R.R6, R.R7, " +
-                             "R.R8, R.R9, R.R10, R.R11, R.R12 from RATING R inner join student s on r.pkst=s.pkst";
+                             "R.R8, R.R9, R.R10, R.R11, R.R12, R.R13, R.R14, R.R15 from RATING R inner join student s on r.pkst=s.pkst";
                 List<Rating> lr = db.query(sql, new Object[]{}, new RowMapper<Rating>() {
                     @Override
                     public Rating mapRow(ResultSet rs, int i) throws SQLException {
@@ -105,6 +108,10 @@ public class JdbcEJurnalDAO implements EJournalDAO {
                         rating.setR10(rs.getInt("R10"));
                         rating.setR11(rs.getInt("R11"));
                         rating.setR12(rs.getInt("R12"));
+                        rating.setR13(rs.getInt("R13"));
+                        rating.setR14(rs.getInt("R14"));
+                        rating.setR15(rs.getInt("R15"));
+
                         return rating;
                     }
                 });
@@ -147,9 +154,10 @@ public class JdbcEJurnalDAO implements EJournalDAO {
     public void updateRating(Rating r) {
         try {
             String sql = "select OPKR, NMSUBJECT " +
-                         "from RFO_RATING( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                         "from RFO_RATING( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             SqlRowSet rs =  db.queryForRowSet(sql, new Object[]{r.getPk(),r.getPkSubject(),r.getPkStudent(),r.getR1(),r.getR2(),
-                                                          r.getR3(),r.getR4(),r.getR5(),r.getR6(),r.getR7(),r.getR8(),r.getR9()});
+                                                          r.getR3(),r.getR4(),r.getR5(),r.getR6(),r.getR7(),r.getR8(),r.getR9(),
+                                                          r.getR10(),r.getR11(),r.getR12(),r.getR13(),r.getR14(),r.getR15()});
             rs.next();
             if (r.getPk() < 0) {
                 r.setPk(rs.getInt("OPKR"));

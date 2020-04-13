@@ -33,6 +33,12 @@ public class JournalGrid extends Grid<Rating> {
                 .setFlexGrow(2).setKey("r11");
         addColumn(Rating::getR12).setHeader("")
                 .setFlexGrow(2).setKey("r12");
+        addColumn(Rating::getR10).setHeader("")
+                .setFlexGrow(2).setKey("r13");
+        addColumn(Rating::getR11).setHeader("")
+                .setFlexGrow(2).setKey("r14");
+        addColumn(Rating::getR12).setHeader("")
+                .setFlexGrow(2).setKey("r15");
     }
 
 }

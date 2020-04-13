@@ -131,6 +131,21 @@ public class RatingEdit extends Dialog {
         r12.setValueChangeMode(ValueChangeMode.EAGER);
         r12.setWidth("15px");
 
+        TextField r13 = new TextField("Оцінка 13");
+        r10.addThemeVariants(TextFieldVariant.LUMO_ALIGN_RIGHT);
+        r10.setValueChangeMode(ValueChangeMode.EAGER);
+        r10.setWidth("15px");
+
+        TextField r14 = new TextField("Оцінка 14");
+        r11.addThemeVariants(TextFieldVariant.LUMO_ALIGN_RIGHT);
+        r11.setValueChangeMode(ValueChangeMode.EAGER);
+        r11.setWidth("15px");
+
+        TextField r15 = new TextField("Оцінка 15");
+        r12.addThemeVariants(TextFieldVariant.LUMO_ALIGN_RIGHT);
+        r12.setValueChangeMode(ValueChangeMode.EAGER);
+        r12.setWidth("15px");
+
         Binder<Rating> binder = new Binder<>(Rating.class);
         if (rating.isNewRating()){
             ComboBox<Student> name = new ComboBox();
@@ -144,7 +159,7 @@ public class RatingEdit extends Dialog {
         }else {
             aContent.add(new Label(rating.getName()), 3);
         }
-        aContent.add(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12) ;
+        aContent.add(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15) ;
 
         aContent.add(actions,3);
 
@@ -164,14 +179,21 @@ public class RatingEdit extends Dialog {
         binder.forField(r10).withConverter(new RateConverter()).bind("r10");
         binder.forField(r11).withConverter(new RateConverter()).bind("r11");
         binder.forField(r12).withConverter(new RateConverter()).bind("r12");
+        binder.forField(r13).withConverter(new RateConverter()).bind("r13");
+        binder.forField(r14).withConverter(new RateConverter()).bind("r14");
+        binder.forField(r15).withConverter(new RateConverter()).bind("r15");
 
         binder.readBean(rating);
 
         save.addClickListener(event -> {
             if (binder.writeBeanIfValid(rating)) {
-                dataProvider.save(rating);
-                before();
-                close();
+                try {
+                    dataProvider.save(rating);
+                    before();
+                    close();
+                }catch (Exception e){
+                    infoLabel.setText("There are errors: " + e.getMessage());
+                }
             }else{
                 BinderValidationStatus<Rating> validate = binder.validate();
                 String errorText = validate.getFieldValidationStatuses()

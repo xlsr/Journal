@@ -1,4 +1,4 @@
-package org.cis.ui.doc;
+package org.cis.tools;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class RatingDoc  {
+    private final int ColsSize = 19;
     private String pib;
     private Collection<Rating> ratings;
     private ByteArrayOutputStream bos;
@@ -36,7 +37,7 @@ public class RatingDoc  {
         try{
             XWPFDocument doc = new XWPFDocument();
             XWPFTable table;
-            table = doc.createTable(ratings.size()+1, 13);
+            table = doc.createTable(ratings.size()+1, ColsSize);
             CTTblPr tblPr = table.getCTTbl().getTblPr();
             CTString styleStr = tblPr.addNewTblStyle();
             styleStr.setVal("StyledTable");
@@ -84,7 +85,7 @@ public class RatingDoc  {
                 row.getCell(12).setText(rating.getR12()==0 ? ""  : String.format("%d", rating.getR12()));
             }
 
-            int[] colunmWidths = new int[] {2600,300,300,300,300,300,300,300,300,300,300,300,300};
+            int[] colunmWidths = new int[] {2600,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300};
             for (int j=0; table.getRows().size()>j;j++) {
                 XWPFTableRow row = table.getRow(0);
                 for (int k=0; row.getTableCells().size()>k;k++) {
@@ -92,7 +93,7 @@ public class RatingDoc  {
                 }
             }
 
-            mergeCellHorizontally(table,0,1,12);
+            mergeCellHorizontally(table,0,1,ColsSize-1);
 
 //            File file = new File("d:\\!\\"+filename);
             bos = new ByteArrayOutputStream();

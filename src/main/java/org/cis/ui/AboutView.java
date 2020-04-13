@@ -26,7 +26,7 @@ public class AboutView extends HorizontalLayout {
             logger.info("testBean");
 
         add(VaadinIcon.INFO_CIRCLE.create());
-        add(new Span("Журнал оцінок"));//, версія 1 This application is using Vaadin version "
+        add(new Span("Журнал оцінок v 1.0.2"));//, версія 1 This application is using Vaadin version "
                 //+ Version.getFullVersion() + "."));
         setSizeFull();
         setJustifyContentMode(JustifyContentMode.CENTER);

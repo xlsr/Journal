@@ -18,6 +18,9 @@ public class Rating {
     private int r10;
     private int r11;
     private int r12;
+    private int r13;
+    private int r14;
+    private int r15;
 
     public Rating() {    }
 
@@ -38,6 +41,10 @@ public class Rating {
         this.r10 = r.getR10();
         this.r11 = r.getR11();
         this.r12 = r.getR12();
+        this.r13 = r.getR13();
+        this.r14 = r.getR14();
+        this.r15 = r.getR15();
+
     }
 
     public void refresh(Rating r) {
@@ -53,6 +60,9 @@ public class Rating {
         this.r10 = r.getR10();
         this.r11 = r.getR11();
         this.r12 = r.getR12();
+        this.r13 = r.getR13();
+        this.r14 = r.getR14();
+        this.r15 = r.getR15();
     }
 
     public Rating(int pk, int pkSubject, int pkStudent, String name) {
@@ -248,5 +258,29 @@ public class Rating {
 
     public void setR12(int r12) {
         this.r12 = r12;
+    }
+
+    public int getR13() {
+        return r13;
+    }
+
+    public void setR13(int r13) {
+        this.r13 = r13;
+    }
+
+    public int getR14() {
+        return r14;
+    }
+
+    public void setR14(int r14) {
+        this.r14 = r14;
+    }
+
+    public int getR15() {
+        return r15;
+    }
+
+    public void setR15(int r15) {
+        this.r15 = r15;
     }
 }

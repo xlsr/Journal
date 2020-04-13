@@ -15,7 +15,7 @@ import org.cis.backend.EJournalDAO;
 import org.cis.backend.data.Rating;
 import org.cis.backend.data.Student;
 import org.cis.tools.Translit;
-import org.cis.ui.doc.RatingDoc;
+import org.cis.tools.RatingDoc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.olli.FileDownloadWrapper;
 
