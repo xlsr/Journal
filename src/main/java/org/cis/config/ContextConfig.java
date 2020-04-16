@@ -39,10 +39,10 @@ public class ContextConfig {
 
     @Bean
     public EJournalDAO eJournalDAO(DataSource dataSource){
-        JdbcEJurnalDAO jurnalDAO = new JdbcEJurnalDAO();
-        jurnalDAO.setDataSource(dataSource);
-        return jurnalDAO;
-        //return new DummyEJurnalDAO();
+        //JdbcEJurnalDAO jurnalDAO = new JdbcEJurnalDAO();
+        //jurnalDAO.setDataSource(dataSource);
+        //return jurnalDAO;
+        return new DummyEJurnalDAO();
     }
 
     @Bean

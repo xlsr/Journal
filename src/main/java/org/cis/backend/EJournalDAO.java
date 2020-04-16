@@ -8,6 +8,8 @@ import java.util.Collection;
 
 public interface EJournalDAO {
 
+    public boolean login(String username,String password);
+
     public Collection<Rating> getJournal();
 
     public Collection<Rating> getRatings();

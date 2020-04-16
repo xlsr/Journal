@@ -82,6 +82,14 @@ public class DummyEJurnalDAO implements EJournalDAO {
     }
 
     @Override
+    public boolean login(String username, String password) {
+        if (username == null || username.isEmpty()) {
+            return false;
+        }
+        return username.equals(password);
+    }
+
+    @Override
     public Collection<Rating> getJournal() {
         return JOURNALS.values();
     }

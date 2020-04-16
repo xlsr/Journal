@@ -10,6 +10,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteAlias;
 import org.cis.MainView;
 import org.cis.backend.EJournalDAO;
 import org.cis.backend.data.Rating;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Route(value = "Journal", layout = MainView.class)
+@RouteAlias(value = "", layout = MainView.class)
 @PageTitle("Оцінки")
 public class JournalView extends HorizontalLayout {
     public static final String VIEW_NAME = "Оцінки";

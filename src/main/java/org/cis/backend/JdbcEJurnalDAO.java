@@ -34,6 +34,14 @@ public class JdbcEJurnalDAO implements EJournalDAO {
     }
 
     @Override
+    public boolean login(String username, String password) {
+        if (username == null || username.isEmpty()) {
+            return false;
+        }
+        return username.equals(password);
+    }
+
+    @Override
     public Collection<Rating> getJournal() {
         //if (lsJournals.size()==0)
             try {
