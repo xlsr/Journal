@@ -35,10 +35,21 @@ public class JdbcEJurnalDAO implements EJournalDAO {
 
     @Override
     public boolean login(String username, String password) {
-        if (username == null || username.isEmpty()) {
-            return false;
+        try {
+            String sql = "select NAMEUSER from LOGINUSER(?,?)";
+            SqlRowSet rs =db.queryForRowSet(sql,new Object[]{username,password});
+            rs.next();
+            return true;
+        } catch (CannotGetJdbcConnectionException e) {
+            logger.error("", e);
+//            ur.setRet(-1);
+//            ur.setMessage(e.getMessage());
+        } catch (UncategorizedSQLException e) {
+            logger.error("", e);
+        } catch (Exception e) {
+            logger.error("", e);
         }
-        return username.equals(password);
+        return  false;
     }
 
     @Override
